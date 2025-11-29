@@ -1,30 +1,33 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Age Verification Modal Logic
+// Age Verification Modal Logic (Immediate Execution)
+(function() {
     const modal = document.getElementById('age-modal');
     const btnYes = document.getElementById('btn-yes');
     const btnNo = document.getElementById('btn-no');
     const mainContent = document.getElementById('main-content');
     const body = document.body;
 
-    // Check if user has already verified (optional, but good UX - removed per strict prompt "on load")
-    // For strict compliance with prompt "A full-screen modal popup on load", we show it every time.
-    // However, to prevent annoyance during development/testing, I'll leave it always showing on refresh.
-    
-    // Show modal
-    modal.style.display = 'flex';
-    mainContent.classList.add('blur-background');
-    body.style.overflow = 'hidden'; // Prevent scrolling
+    if (modal && btnYes && btnNo) {
+        // Show modal immediately
+        modal.style.display = 'flex';
+        if (mainContent) mainContent.classList.add('blur-background');
+        body.style.overflow = 'hidden';
 
-    btnYes.addEventListener('click', () => {
-        modal.style.display = 'none';
-        mainContent.classList.remove('blur-background');
-        body.style.overflow = 'auto'; // Restore scrolling
-    });
+        btnYes.addEventListener('click', () => {
+            modal.classList.add('fade-out');
+            setTimeout(() => {
+                modal.style.display = 'none';
+                if (mainContent) mainContent.classList.remove('blur-background');
+                body.style.overflow = 'auto';
+            }, 500); // Match transition duration
+        });
 
-    btnNo.addEventListener('click', () => {
-        window.location.href = "https://www.google.com";
-    });
+        btnNo.addEventListener('click', () => {
+            window.location.href = "https://www.google.com";
+        });
+    }
+})();
 
+document.addEventListener('DOMContentLoaded', () => {
     // Mobile Menu Logic
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
