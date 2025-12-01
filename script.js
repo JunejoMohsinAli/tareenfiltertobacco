@@ -1,31 +1,4 @@
-// Age Verification Modal Logic (Immediate Execution)
-(function() {
-    const modal = document.getElementById('age-modal');
-    const btnYes = document.getElementById('btn-yes');
-    const btnNo = document.getElementById('btn-no');
-    const mainContent = document.getElementById('main-content');
-    const body = document.body;
-
-    if (modal && btnYes && btnNo) {
-        // Show modal immediately
-        modal.style.display = 'flex';
-        if (mainContent) mainContent.classList.add('blur-background');
-        body.style.overflow = 'hidden';
-
-        btnYes.addEventListener('click', () => {
-            modal.classList.add('fade-out');
-            setTimeout(() => {
-                modal.style.display = 'none';
-                if (mainContent) mainContent.classList.remove('blur-background');
-                body.style.overflow = 'auto';
-            }, 500); // Match transition duration
-        });
-
-        btnNo.addEventListener('click', () => {
-            window.location.href = "https://www.google.com";
-        });
-    }
-})();
+// Age Verification Modal Logic Removed
 
 document.addEventListener('DOMContentLoaded', () => {
     // Mobile Menu Logic
